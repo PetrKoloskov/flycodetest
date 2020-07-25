@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>posts</h1>
+<ul>
+{% for post in post_list %}
+    <li><h3>{{ post.title}}</h3>
+        <p>{{post.pub_date}}</p>
+        <p>{{ post.content}}</p>
+        <hr>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}

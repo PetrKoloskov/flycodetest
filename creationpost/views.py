@@ -1,6 +1,7 @@
 from django.shortcuts import render
-
+from django.views import generic
 from .models import Post
+
 def index(request):
     posts=Post.objects.all().count()
     return render(
@@ -8,4 +9,7 @@ def index(request):
         'index.html',
         context={'posts':posts}
     )
+
+class PostListView(generic.ListView):
+    model= Post
 # Create your views here.
