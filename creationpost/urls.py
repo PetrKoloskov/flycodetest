@@ -1,8 +1,9 @@
 from django.urls import path
 from . import views
-import re
 from django.conf.urls import url
 urlpatterns = [
-    path('', views.index,name='index'),
-    path(r'^posts/$', views.PostListView.as_view(),name='posts')
+    url(r'^$', views.index,name='index'),
+    url(r'^posts/$', views.PostListView.as_view(),name='posts'),
+    url(r'^post/(?P<pk>\d+)$',views.PostDetailView.as_view(),name='post-detail')
+
 ]
