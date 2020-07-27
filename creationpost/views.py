@@ -20,8 +20,7 @@ def index(request):
 class TagIndexView(generic.ListView):
     template_name = 'creationpost/post_list.html'
     model = Post
-    paginate_by = '10'
-    context_object_name = 'posts'
+    context_object_name = 'post_list'
     def get_queryset(self):
         return Post.objects.filter(tags__slug=self.kwargs.get('slug'))
 
@@ -38,15 +37,11 @@ class PostUpdate(UpdateView):
     success_url = reverse_lazy('posts')
 
 class PostDelete(DeleteView):
-
     model = Post
     success_url = reverse_lazy('posts')
 
-
-
 class PostListView(generic.ListView):
     model = Post
-
 
 class PostDetailView(generic.DetailView):
     model = Post
