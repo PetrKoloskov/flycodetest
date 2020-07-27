@@ -1,19 +1,21 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1>All posts</h1>
-<ol>
 
-{% for post in post_list %}
-<li>
-    <div class="row">
-        <div class="col-md-4"><h4><a href="{% url 'post-detail'  post.pk%}">{{ post.title }}</a></h4></div>
-        <div class="col-md-1"><a class="btn btn-outline-danger" href="{% url 'post-delete'  post.pk%}">delete</a></div>
-        <div class="col-md-1"><a class="btn btn-outline-warning" href="{% url 'post-update'  post.pk%}">update</a></div>
-
-    </div>
-    <hr>
-</li>
-{% endfor %}
-</ol>
+<div class="container">
+    <h1>All posts</h1>
+    <ol>
+        {% for post in post_list %}
+        <li>
+            <div class="row">
+                <div class="col-md-4"><h4><a href="{% url 'post-detail'  post.pk%}">{{ post.title }}</a></h4></div>
+                <div class="col-md-4"><span class="post-date">{{ post.pub_date }}</span></div>
+                <div class="col-md-1"><a class="btn btn-outline-danger" href="{% url 'post-delete'  post.pk%}">delete</a></div>
+                <div class="col-md-1"><a class="btn btn-outline-warning" href="{% url 'post-update'  post.pk%}">update</a></div>
+            </div>
+            <hr>
+        </li>
+        {% endfor %}
+    </ol>
+</div>
 {% endblock %}
