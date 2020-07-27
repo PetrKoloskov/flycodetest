@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils import timezone
 
+from taggit.models import Tag
 
 
 def index(request):
@@ -14,6 +15,15 @@ def index(request):
         'index.html',
         context={'posts': posts}
     )
+
+
+class TagIndexView(generic.ListView):
+    template_name = 'creationpost/post_list.html'
+    model = Post
+    paginate_by = '10'
+    context_object_name = 'posts'
+    def get_queryset(self):
+        return Post.objects.filter(tags__slug=self.kwargs.get('slug'))
 
 
 class PostCreate(CreateView):
@@ -28,20 +38,10 @@ class PostUpdate(UpdateView):
     success_url = reverse_lazy('posts')
 
 class PostDelete(DeleteView):
+
     model = Post
     success_url = reverse_lazy('posts')
 
-'''
-def edit(request, id):
-    post=Post.objects.get(id=id)
-    try:
-        if request.method=='POST':
-            post.title=request.POST.get('title')
-            post.content=request.POST.get('content')
-            post.save()
-            return HttpResponseRedirect('/')
-        else:
-'''
 
 
 class PostListView(generic.ListView):

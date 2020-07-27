@@ -2,7 +2,9 @@
 
 {% block content %}
 <h1>All posts</h1>
+    <a href="{% url 'index' %}">Main</a>
 <ul>
+
 {% for post in post_list %}
     <li><a href="{% url 'post-detail'  post.pk%}">{{ post.title }}</a>
         <a href="{% url 'post-delete'  post.pk%}">delete</a>
