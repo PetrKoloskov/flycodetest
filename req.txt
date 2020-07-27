@@ -1,0 +1,4 @@
+django==3.08
+pillow==7.02
+django-taggit==1.3
+mysqlclient==2.01
