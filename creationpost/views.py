@@ -23,7 +23,7 @@ class PostCreate(CreateView):
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'content', 'image']
     model.pub_date=timezone.now()
     success_url = reverse_lazy('posts')
 
