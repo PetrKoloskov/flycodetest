@@ -1,18 +1,24 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+    <div class="container">
     <h3>{{ post.title }}</h3>
-    <p>{{ post.pub_date }}</p>
-    <img src="{{ post.image.url }}" alt="">
-    <p>{{ post.content }}</p>
+    <p class="blog-date">{{ post.pub_date }}</p>
+    <div class="row">
+    <div class="col-md-12"><img src="{{ post.image.url }}" alt="" class="post-image">
+    <div class="text-justify">{{ post.content }}</div>
+        </div>
+    </div>
     <p class="tags">
     Tags:
     {% for tag in post.tags.all %}
-        <a href="{% url "tagged" tag.slug %}">
-            {{ tag.name }}
+
+            <a class="tag-list" href="{% url "tagged" tag.slug %}">
+            <span class="badge badge-secondary">{{ tag.name }}</span>
         </a>
-        {% if not forloop.last %}, {% endif %}
+
+
     {% endfor %}
 </p>
-    <a href="{% url 'index' %}">Main</a>
+</div>
 {% endblock %}

@@ -5,17 +5,12 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.utils import timezone
 
-from taggit.models import Tag
-
 
 def index(request):
-    posts = Post.objects.all().count()
     return render(
         request,
-        'index.html',
-        context={'posts': posts}
+        'index.html'
     )
-
 
 class TagIndexView(generic.ListView):
     template_name = 'creationpost/post_list.html'
@@ -32,8 +27,8 @@ class PostCreate(CreateView):
 
 class PostUpdate(UpdateView):
     model = Post
-    fields = ['title', 'content', 'image']
-    model.pub_date=timezone.now()
+    fields = ['title', 'content', 'image','tags']
+    model.pub_date = timezone.now()
     success_url = reverse_lazy('posts')
 
 class PostDelete(DeleteView):
